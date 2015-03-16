@@ -392,8 +392,6 @@ Views.publicFile = function(name, options) {
   Convenient route handler for static files or templates. If no extension, assumes Jade file. Assumes files are
   relative to "views" directory unless filename starts with "./" or "/".
 
-  options defaults: { warm : true, cache : true }
-
 */
 
 Views.staticHandler = function(name, vars, options) {
