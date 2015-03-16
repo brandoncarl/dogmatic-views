@@ -337,7 +337,7 @@ Views.sendStatic = function(name) {
     })
 
     .catch(function(err) {
-      res.sendStatus(500);
+      res.status(404).end();
       return when.reject(err);
     });
   }
@@ -375,7 +375,7 @@ Views.sendScript = function(name) {
     })
 
     .catch(function(err) {
-      res.sendStatus(500);
+      res.sendStatus(404);
       return when.reject(err);
     });
 
