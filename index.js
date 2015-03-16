@@ -324,13 +324,22 @@ Views.publicFile = function(name, needsZip) {
   Convenient route handler for static files or templates. If no extension, assumes Jade file. Assumes files are
   relative to "views" directory unless filename starts with "./" or "/".
 
+  options defaults: { warm : true, cache : true }
+
 */
 
-Views.sendStatic = function(name) {
+Views.sendStatic = function(name, vars, options) {
+
+  // Warm up and set up caching
+  if ("undefined" === typeof options || options === true) options = {};
+  options = assign({ cache : true, warm : true}, options);
+
+  // Optionally warm cach
+  if (options.warm) Views.jade(name, vars, options.cache);
 
   return function(req, res) {
 
-    Views.jade(name)
+    Views.jade(name, vars, options.cache)
 
     .then(function(html) {
       res.type("html").send(html);

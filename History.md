@@ -1,6 +1,7 @@
 
 2015-03-16 v0.0.2
 --------------------------------------------------------
+* Improved: Views#sendStatic includes cache warming
 * Fixed: Views#sendScript had bad variables
 * Improved: Views#sendStatic Express 3.x compatible
 * Improved: better debugging output

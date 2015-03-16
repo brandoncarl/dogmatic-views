@@ -51,7 +51,8 @@ Assumes files are relative to "views" directory unless filename starts with "./"
 
 ### Views.sendStatic(filename)
 
-Convenient route handler for static files or templates.
+Convenient route handler for static files or templates. Default options include caching and
+cache-warming: { warm : true, cache : true }
 
 ```js
 app.get("/privacy", Views.sendJade("legal/privacy"))`
