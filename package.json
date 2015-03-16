@@ -1,6 +1,6 @@
 {
   "name": "dogmatic-views",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Highly opinionated view and file rendering library for Express",
   "main": "index.js",
   "scripts": {
