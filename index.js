@@ -193,7 +193,7 @@ Views.public = function(newPublic) {
     // Return cached file if available
     if (files[name] && cache) return when(files[name][type]);
 
-    debug("Reading file for " + name);
+    debug("Reading file at " + name);
 
     return readFile(name)
 
@@ -258,6 +258,8 @@ Views.publicFile = function(name, needsZip) {
     if (templates[name] && cache) return when(templates[name]);
 
     loc = makePath(name, __dirviews);
+    debug("Reading file at " + loc);
+
     return readFile(loc, "utf8")
 
     .then(function(file) {
