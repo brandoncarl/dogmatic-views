@@ -18,8 +18,8 @@
   • handlebars
 
   Route Handlers:
-  • sendScript
-  • sendStatic
+  • staticHandler
+  • scriptHandler
 
 */
 
@@ -319,7 +319,7 @@ Views.publicFile = function(name, needsZip) {
 
 /*
 
-  function sendStatic
+  function staticHandler
 
   Convenient route handler for static files or templates. If no extension, assumes Jade file. Assumes files are
   relative to "views" directory unless filename starts with "./" or "/".
@@ -328,7 +328,7 @@ Views.publicFile = function(name, needsZip) {
 
 */
 
-Views.sendStatic = function(name, vars, options) {
+Views.staticHandler = function(name, vars, options) {
 
   // Warm up and set up caching
   if ("undefined" === typeof options || options === true) options = {};
@@ -356,14 +356,14 @@ Views.sendStatic = function(name, vars, options) {
 
 /*
 
-  function sendScript
+  function scriptHandler
 
   Convenient route handler that will load a script, zip and cache it, and then respond with proper
   headers. Assumes files are relative to "public" directory unless filename starts with "./" or "/".
 
 */
 
-Views.sendScript = function(name) {
+Views.scriptHandler = function(name, options) {
 
   return function(req, res) {
 
