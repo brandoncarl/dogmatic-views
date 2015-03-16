@@ -359,7 +359,10 @@ Views.publicFile = function(name, options) {
     name = addExtension(name, "jade");
     ext  = path.extname(name);
 
-    return (ext === ".html" ? readFile(makePath(name, __dirviews)) : Views.jade(name, vars, false))
+    // Return cached file if available
+    if (templates[name] && cache) return when(templates[name]);
+
+    return (ext === ".html" ? readFile(makePath(name, __dirviews)) : Views[__engFirst](name, vars, { cache : false }))
 
     .then(function(html) {
       return when.try(compile, html);
