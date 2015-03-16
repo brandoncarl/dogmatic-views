@@ -191,9 +191,13 @@ Views.public = function(newPublic) {
 
   var files = {};
 
-  Views.file = function(name, needsZip) {
+  Views.file = function(name, options) {
 
-    var type = needsZip ? "zip" : "std";
+    //  Set default for caching and zipping
+    options = ("object" === typeof options) ? options : {};
+    options = assign({ cache : true, zip : true }, options);
+
+    var type = options.zip ? "zip" : "std";
 
     // Return cached file if available
     if (files[name] && cache) return when(files[name][type]);
@@ -225,8 +229,8 @@ Views.public = function(newPublic) {
 
 */
 
-Views.publicFile = function(name, needsZip) {
-  return Views.file(makePath(name, "public"), needsZip);
+Views.publicFile = function(name, options) {
+  return Views.file(makePath(name, "public"), options);
 };
 
 
@@ -249,12 +253,13 @@ Views.publicFile = function(name, needsZip) {
 
   */
 
-  Views.jade = function(name, vars, cacheResults) {
+  Views.jade = function(name, vars, options) {
 
     var loc;
 
     //  Set default for caching
-    if ("undefined" === typeof cacheResults) cacheResults = true;
+    options = ("object" === typeof options) ? options : {};
+    options = assign({ cache : true }, options);
 
     // Ensure name has jade extension (for caching)
     name = addExtension(name, "jade");
@@ -273,7 +278,7 @@ Views.publicFile = function(name, needsZip) {
     })
 
     .tap(function(html) {
-      if (cacheResults) templates[name] = html;
+      if (options.cache) templates[name] = html;
     });
 
   };
@@ -336,7 +341,6 @@ Views.publicFile = function(name, needsZip) {
 Views.staticHandler = function(name, vars, options) {
 
   // Warm up and set up caching
-  if ("undefined" === typeof options || options === true) options = {};
   options = assign({ cache : true, warm : true}, options);
 
   // Optionally warm cach
@@ -374,7 +378,6 @@ Views.scriptHandler = function(name, options) {
 
     var needsZip = !!accepts(req).encodings("gzip");
 
-    Views.publicFile(name, needsZip)
 
     .then(function(data) {
 

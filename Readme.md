@@ -25,17 +25,17 @@ var Views = require("dogmatic-views");
 ```
 
 
-### Views.file(filename, [needsZip = true])
+### Views.file(filename, [options = { zip : true, cache : true }])
 
 Reads a file, caches and zips it. Returns a promise that resolves to said file.
 
 
-### Views.publicFile(filename, [needsZip = true])
+### Views.publicFile(filename, [options = { zip : true, cache : true }])
 
 Reads a file from the public directory (which defaults to the root directory + "/public"). Returns a promise that resolves to said file.
 
 
-### Views.jade(filename, variables, [cacheResults = true])
+### Views.jade(filename, variables, [options = { cache : true }])
 
 Renders a Jade template into HTML and caches it. Returns a promise that resolves to said HTML.
 
@@ -49,24 +49,23 @@ Renders a file into a precompiled Handlebars function. Accepts HTML files, but i
 Assumes files are relative to "views" directory unless filename starts with "./" or "/".
 
 
-### Views.sendStatic(filename)
+### Views.staticHandler(filename, vars, [options = { warm : true, cache : true }])
 
-Convenient route handler for static files or templates. Default options include caching and
-cache-warming: { warm : true, cache : true }
+Convenient route handler for static files or templates.
 
 ```js
-app.get("/privacy", Views.sendJade("legal/privacy"))`
+app.get("/privacy", Views.staticHandler("legal/privacy"))`
 ```
 
 If no extension, assumes Jade file. Assumes files are relative to "views" directory unless filename starts with "./" or "/".
 
 
-### Views.sendScript(filename)
+### Views.scriptHandler(filename, [options = { cache : true, warm : true, zip : true }])
 
 Convenient route handler that will load a script, zip and cache it, and then respond with proper headers.
 
 ```js
-app.get("/scripts/app.js", Views.sendScript("app.js"))
+app.get("/scripts/app.js", Views.scriptHandler("app.js"))
 ```
 
 Assumes files are relative to "public" directory unless filename starts with "./" or "/".

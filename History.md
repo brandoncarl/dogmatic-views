@@ -1,6 +1,7 @@
 
 2015-03-16 v0.0.3
 --------------------------------------------------------
+* Improved: functions now use options rather than arguments
 * Improved: introduction better documented
 * Improved: #send* functions now "handlers"
 
