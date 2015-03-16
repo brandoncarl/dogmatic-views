@@ -360,7 +360,7 @@ Views.sendScript = function(name) {
 
     var needsZip = !!accepts(req).encodings("gzip");
 
-    Views.publicFile(name.needsZip)
+    Views.publicFile(name, needsZip)
 
     .then(function(data) {
 
