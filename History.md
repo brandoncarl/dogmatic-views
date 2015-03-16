@@ -1,6 +1,7 @@
 
 2015-03-16 v0.0.2
 --------------------------------------------------------
+* Fixed: relative path names in Views#jade
 * Fixed: path detection RegExp requires start of filename
 
 

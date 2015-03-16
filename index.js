@@ -246,6 +246,8 @@ Views.publicFile = function(name, needsZip) {
 
   Views.jade = function(name, vars, cacheResults) {
 
+    var loc;
+
     //  Set default for caching
     if ("undefined" === typeof cacheResults) cacheResults = true;
 
@@ -255,10 +257,11 @@ Views.publicFile = function(name, needsZip) {
     // Return cached file if available
     if (templates[name] && cache) return when(templates[name]);
 
-    return readFile(makePath(name, __dirviews), "utf8")
+    loc = makePath(name, __dirviews);
+    return readFile(loc, "utf8")
 
     .then(function(file) {
-      var params = assign({}, defaults, vars || {}, { filename : name });
+      var params = assign({}, defaults, vars || {}, { filename : loc });
       return when.try(render, file, params);
     })
 
