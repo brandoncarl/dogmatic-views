@@ -75,7 +75,7 @@ var cache       = process.env.CACHE || (process.env.NODE_ENV === "production"),
 
 */
 
-var pathRE = new RegExp("\.?\.?" + path.sep);
+var pathRE = new RegExp("^\.?\.?" + path.sep);
 
 function hasPath(name) {
   return pathRE.test(name || "")
