@@ -21,5 +21,9 @@
     "jade": "^1.9.2",
     "lodash.assign": "^3.0.0",
     "when": "^3.7.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/brandoncarl/dogmatic-views.git"
   }
 }
