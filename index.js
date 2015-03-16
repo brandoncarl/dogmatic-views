@@ -396,6 +396,7 @@ Views.publicFile = function(name, options) {
 Views.staticHandler = function(name, vars, options) {
 
   // Warm up and set up caching
+  options = ("object" === typeof options) ? options : {};
   options = assign({ cache : true, warm : true}, options);
 
   // Optionally warm cache

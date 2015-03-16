@@ -1,6 +1,7 @@
 
 2015-03-16 v0.0.3
 --------------------------------------------------------
+* Fixed: View#staticHandler missing default options
 * New: Views#templateHandler provides two-pass rendering
 * Fixed: Views#*Handler: Express 3.x compatible 404s
 * New: skeletons configuration of first and second pass rendering engine (not functional)
