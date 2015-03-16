@@ -1,6 +1,7 @@
 
 2015-03-16 v0.0.3
 --------------------------------------------------------
+* Fixed: Views#scriptHandler missing default options
 * Fixed: View#staticHandler missing default options
 * New: Views#templateHandler provides two-pass rendering
 * Fixed: Views#*Handler: Express 3.x compatible 404s

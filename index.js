@@ -467,10 +467,18 @@ Views.templateHandler = function(name, vars, options) {
 
 Views.scriptHandler = function(name, options) {
 
+  // Warm up and set up caching
+  options = ("object" === typeof options) ? options : {};
+  options = assign({ cache : true, warm : true, zip : true }, options);
+
+  // Optionally warm cache
+  if (options.warm) Views.publicFile(name, options);
+
   return function(req, res) {
 
     var needsZip = !!accepts(req).encodings("gzip");
 
+    Views.publicFile(name, { zip : needsZip })
 
     .then(function(data) {
 
