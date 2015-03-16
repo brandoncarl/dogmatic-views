@@ -100,3 +100,12 @@ Sets the views directory offset to root.
 
 Sets the public directory offset to root.
 
+
+### Views.firstPass(newEngine)
+
+Sets the rendering engine for first pass rendering.
+
+
+### Views.secondPass(newEngine)
+
+Sets the rendering engine for second pass rendering.

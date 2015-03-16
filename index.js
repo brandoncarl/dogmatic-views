@@ -15,6 +15,8 @@
   • root
   • views
   • public
+  • firstPass
+  • secondPass
 
   Functions:
   • file
@@ -61,7 +63,9 @@ var Views = module.exports = {};
 var cache       = process.env.CACHE || (process.env.NODE_ENV === "production"),
     __dirroot   = path.join(__dirname, "..", ".."),
     __dirviews  = "views",
-    __dirpublic = "public";
+    __dirpublic = "public",
+    __engFirst  = "jade",
+    __engSecond = "handlebars";
 
 
 
@@ -168,6 +172,38 @@ Views.public = function(newPublic) {
     __dirpublic = newPublic;
   else
     return __dirpublic;
+};
+
+
+/*
+
+  function firstPass
+
+  Gets or sets default static engine.
+
+*/
+
+Views.firstPass = function(newEngine) {
+  if (newEngine)
+    __engFirst = newEngine;
+  else
+    return __engFirst;
+};
+
+
+/*
+
+  function secondPass
+
+  Gets or sets default static engine.
+
+*/
+
+Views.secondPass = function(newEngine) {
+  if (newEngine)
+    __engSecond = newEngine;
+  else
+    return __engSecond;
 };
 
 
@@ -361,12 +397,12 @@ Views.staticHandler = function(name, vars, options) {
   // Warm up and set up caching
   options = assign({ cache : true, warm : true}, options);
 
-  // Optionally warm cach
-  if (options.warm) Views.jade(name, vars, options.cache);
+  // Optionally warm cache
+  if (options.warm) Views[__engFirst](name, vars, options.cache);
 
   return function(req, res) {
 
-    Views.jade(name, vars, options.cache)
+    Views[__engFirst](name, vars, options.cache)
 
     .then(function(html) {
       res.type("html").send(html);

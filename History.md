@@ -1,6 +1,7 @@
 
 2015-03-16 v0.0.3
 --------------------------------------------------------
+* New: skeletons configuration of first and second pass rendering engine (not functional)
 * Improved: Views#file: zipping and caching now optional
 * Improved: functions now use options rather than arguments
 * Improved: introduction better documented
