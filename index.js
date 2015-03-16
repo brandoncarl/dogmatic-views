@@ -11,10 +11,15 @@
   3. "views" directory is relative to root
   4. Jade is the view engine of choice
 
-  Functions:
+  Getters/setters:
   • root
-  • file
+  • views
   • public
+
+  Functions:
+  • file
+  • publicFile
+  • jade
   • handlebars
 
   Route Handlers:
