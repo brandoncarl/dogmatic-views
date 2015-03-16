@@ -446,7 +446,7 @@ Views.scriptHandler = function(name, options) {
     })
 
     .catch(function(err) {
-      res.sendStatus(404);
+      res.status(404).end();
       return when.reject(err);
     });
 
