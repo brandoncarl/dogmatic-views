@@ -277,7 +277,7 @@ Views.secondPass = function(newEngine) {
 
 /*
 
-  function public
+  function publicFile
 
   Reads a file from a "public" directory, assumed to be relative to root.
 
