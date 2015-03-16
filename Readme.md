@@ -51,10 +51,23 @@ Assumes files are relative to "views" directory unless filename starts with "./"
 
 ### Views.staticHandler(filename, vars, [options = { warm : true, cache : true }])
 
-Convenient route handler for static files or templates.
+Convenient route handler for static files or first-pass templates.
 
 ```js
 app.get("/privacy", Views.staticHandler("legal/privacy"))`
+```
+
+If no extension, assumes Jade file. Assumes files are relative to "views" directory unless filename starts with "./" or "/".
+
+
+### Views.templateHandler(filename, vars, [options = { warm : true, cache : true }])
+
+Convenient route handler for second-pass templates. This is best understood through example. Below,
+the Jade template is compiled to HTML, which is then pre-compiled to Handlebars and cached. When
+the request is made, only the Handlebars function runs (which is lighting fast).
+
+```js
+app.get("/app", function(req, res) { return Views.templateHandler("app", globalVars)(req, res, localVars); })`
 ```
 
 If no extension, assumes Jade file. Assumes files are relative to "views" directory unless filename starts with "./" or "/".

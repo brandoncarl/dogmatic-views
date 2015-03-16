@@ -26,6 +26,7 @@
 
   Route Handlers:
   • staticHandler
+  • templateHandler
   • scriptHandler
 
 */
@@ -415,6 +416,43 @@ Views.staticHandler = function(name, vars, options) {
   }
 
 };
+
+
+/*
+
+  function templateHandler
+
+  Convenient route handler to setup and use Handlebars scripts. If no extension, assumes Jade file.
+  Assumes files are relative to "views" directory unless filename starts with "./" or "/".
+
+*/
+
+Views.templateHandler = function(name, vars, options) {
+
+  // Warm up and set up caching
+  options = ("object" === typeof options) ? options : {};
+  options = assign({ cache : true, warm : true}, options);
+
+  // Optionally warm cache
+  if (options.warm) Views[__engSecond](name, vars);
+
+  return function(req, res, locals) {
+
+    Views[__engSecond](name, vars)
+
+    .then(function(template) {
+      res.type("html").send(template(locals || {}));
+    })
+
+    .catch(function(err) {
+      res.status(404).end();
+      return when.reject(err);
+    });
+  }
+
+
+};
+
 
 
 /*
