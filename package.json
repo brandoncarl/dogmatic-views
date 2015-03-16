@@ -1,0 +1,25 @@
+{
+  "name": "dogmatic-views",
+  "version": "0.0.0",
+  "description": "Highly opinionated view and file rendering library for Express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "handlebars",
+    "jade",
+    "view",
+    "rendering"
+  ],
+  "author": "Brandon Carl",
+  "license": "MIT",
+  "dependencies": {
+    "accepts": "^1.2.5",
+    "debug": "^2.1.3",
+    "handlebars": "^3.0.0",
+    "jade": "^1.9.2",
+    "lodash.assign": "^3.0.0",
+    "when": "^3.7.2"
+  }
+}
