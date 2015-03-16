@@ -4,7 +4,7 @@ Dogmatic is a collection of highly opinionated modules for use in IO.js and Node
 
 Dogmatic Views was created for web applications that utilize a limited number of files and templates, but need high availability. It's great for web apps, and horrible for non-templated blogs.
 
-It uses a combination of Jade (for readability) and Handlebars (for speed). Yes, this sounds crazy, but it helps to maximize both maintanability and performance.
+It uses two-pass rendering. By default, the first pass is Jade (for readability/maintainability) and the second pass is Handlebars (for compilation speed). Yes, this sounds crazy, but it helps to maximize both maintanability and performance.
 
 For further assumptions and light configuration options, please see below.
 

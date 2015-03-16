@@ -200,19 +200,37 @@ Views.public = function(newPublic) {
     var type = options.zip ? "zip" : "std";
 
     // Return cached file if available
-    if (files[name] && cache) return when(files[name][type]);
+    if (files[name] && cache) {
+      if (files[name][type])
+        return when(files[name][type]);
+      else {
+        // File must exist in unzipped form
+        zip(files[name].std).tap(function(zipped) {
+          files[name].zip = new Buffer(zipped, "binary");
+        });
+      }
+    }
 
     debug("Reading file at " + name);
 
     return readFile(name)
 
+    // Optionally zip
     .then(function(file) {
-      return when.join(file, zip(file));
+      var promises = [file];
+      if (options.zip) promises.push(zip(file));
+      return when.all(promises);
     })
 
     .spread(function(file, zipped) {
-      files[name] = { std : file, zip : new Buffer(zipped, "binary") };
-      return when(files[name][type]);
+
+      // Optionally cache
+      if (options.cache) {
+        files[name] = { std : file };
+        if (options.zip) files[name].zip = new Buffer(zipped, "binary");
+      }
+
+      return when("std" === type ? file : zipped);
     });
 
   };
