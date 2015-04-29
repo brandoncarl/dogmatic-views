@@ -1,4 +1,9 @@
 
+2015-04-29 v0.0.4
+--------------------------------------------------------
+* New: adds Helpers (and, contains, gt, gte, is, isnt, lt, lte, or)
+
+
 2015-03-16 v0.0.3
 --------------------------------------------------------
 * Fixed: Views#handlebars missing proper caching

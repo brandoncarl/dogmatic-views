@@ -52,6 +52,11 @@ var accepts     = require("accepts"),
     zip         = nodefn.lift(zlib.gzip);
 
 
+// Handlebars helpers
+
+require(path.join(__dirname, "helpers.js"))(handlebars);
+
+
 
 /*
 
@@ -433,7 +438,7 @@ Views.templateHandler = function(name, vars, options) {
 
   // Warm up and set up caching
   options = ("object" === typeof options) ? options : {};
-  options = assign({ cache : true, warm : true}, options);
+  options = assign({ cache : true, warm : true }, options);
 
   // Optionally warm cache
   if (options.warm) Views[__engSecond](name, vars);
